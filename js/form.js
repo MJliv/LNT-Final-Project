@@ -106,3 +106,36 @@ function validateForm() {
     return false;
   }
 }
+
+let submit = document.getElementById("submit");
+
+const firebaseConfig = {
+  apiKey: "AIzaSyA-tG34elA5XrBcHEPL57jTi7K3R57VlZA",
+  authDomain: "lntfinalproject-e9e69.firebaseapp.com",
+  databaseURL: "https://lntfinalproject-e9e69-default-rtdb.firebaseio.com",
+  projectId: "lntfinalproject-e9e69",
+  storageBucket: "lntfinalproject-e9e69.appspot.com",
+  messagingSenderId: "134163923116",
+  appId: "1:134163923116:web:52be59f0bc987966cc9f09",
+};
+
+firebase.initializeApp(firebaseConfig);
+let database = firebase.database().ref("user");
+
+$("#submit").click(function (e) {
+  e.preventDefault();
+  let name = document.getElementById("name").value;
+  let email = document.getElementById("email").value;
+  let mobile = document.getElementById("mobile").value;
+  let country = document.getElementById("country").value;
+  // let gender = document.getElementByClassName("gender").value;
+
+  let newUser = database.push();
+  newUser.set({
+    name: name,
+    email: email,
+    mobile: mobile,
+    country: country,
+    // gender: gender
+  });
+});
